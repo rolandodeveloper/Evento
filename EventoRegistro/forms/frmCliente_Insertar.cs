@@ -22,49 +22,50 @@ namespace EventoRegistro.forms
             clsCliente nuevoCliente=null;
             try
             {
-                nuevoCliente = new clsCliente(0, txtNombres.Text, txtApellidoPaterno.Text, txtApellidoMaterno.Text,
-                                            'M', cmbEstadoCivil.SelectedItem.ToString(), 'S', dtpFechaNacimiento.Value,
-                                            (short)nudPuntosBono.Value, (byte)nudCantidadHijos.Value, chbEsClienteRecomendado.Checked);
+                nuevoCliente = new clsCliente(0, txtNombres.Text, txtApellidoPaterno.Text, 
+                       txtApellidoMaterno.Text,'M', cmbEstadoCivil.SelectedItem.ToString(), 'S', 
+                       dtpFechaNacimiento.Value,(short)nudPuntosBono.Value, 
+                       (byte)nudCantidadHijos.Value, chbEsClienteRecomendado.Checked);
                 if (rbFemenino.Checked) nuevoCliente.sexo = 'F';
-                if (rbOro.Checked) nuevoCliente.tipo = 'O'; else if (rbPlata.Checked) nuevoCliente.tipo = 'P';
+                if (rbOro.Checked) nuevoCliente.tipo = 'O';
+                else if (rbPlata.Checked) nuevoCliente.tipo = 'P';
                 nuevoCliente.correoElectronico = txtCorreoElectronico.Text;
-                //nuevoCliente.Insertar();
+                nuevoCliente.Insertar();
             }
             catch (ArgumentNullException error)
             {
-                MessageBox.Show(error.Message, "Datos no completados", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtNombres.SelectAll(); txtNombres.Focus();
-                return;
+                MessageBox.Show(error.Message, "Datos no completados", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNombres.SelectAll(); txtNombres.Focus();return;
             }
             catch (ArgumentOutOfRangeException error)
             {
-                MessageBox.Show(error.Message, "Datos inválidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtNombres.SelectAll(); txtNombres.Focus();
-                return;
+                MessageBox.Show(error.Message, "Datos inválidos", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNombres.SelectAll(); txtNombres.Focus();return;
             }
             catch (DataException error)
             {
-                MessageBox.Show(error.Message, "Error en la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtNombres.SelectAll(); txtNombres.Focus();
-                return;
+                MessageBox.Show(error.Message, "Error en la base de datos", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNombres.SelectAll(); txtNombres.Focus();return;
             }
             catch (Exception error)
             {
-                MessageBox.Show(error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtNombres.SelectAll();txtNombres.Focus();
-                return;
+                MessageBox.Show(error.Message, "Error", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+                txtNombres.SelectAll();txtNombres.Focus();return;
             }            
-            MessageBox.Show("Cliente registrado satisfactoriamente.", "Confirmación de registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            txtNombres.SelectAll();txtNombres.Focus();
-
-            
+            MessageBox.Show("Cliente registrado satisfactoriamente.", 
+                "Confirmación de registro", MessageBoxButtons.OK, 
+                MessageBoxIcon.Information);
+            txtNombres.SelectAll();txtNombres.Focus();            
         }
 
         private void frmCliente_Insertar_Load(object sender, EventArgs e)
         {            
-            dtpFechaNacimiento.MaxDate = new DateTime(System.DateTime.Now.AddYears(-25).Year,
-                                                        System.DateTime.Now.Month,
-                                                        System.DateTime.Now.Day);
+            dtpFechaNacimiento.MinDate  = new DateTime(System.DateTime.Now.AddYears(-25).Year,
+                                                        1,1);
             btnNuevo_Click(sender, e);
         }
 

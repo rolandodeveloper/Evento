@@ -396,7 +396,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmCliente_Insertar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "El blog de Rolando";
+            this.Text = "El aprendizaje de Rolando";
             this.Load += new System.EventHandler(this.frmCliente_Insertar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudPuntosBono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadHijos)).EndInit();

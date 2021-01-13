@@ -54,6 +54,7 @@
     <Compile Include="forms\frmCliente_Insertar.Designer.cs">
       <DependentUpon>frmCliente_Insertar.cs</DependentUpon>
     </Compile>
+    <Compile Include="modules\mdlVariablesGlobales.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="forms\frmCliente_Insertar.resx">
@@ -83,7 +84,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TextFile1.txt" />
+    <Content Include="Leeme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

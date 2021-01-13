@@ -1,2 +1,0 @@
-﻿Cadena de conexión
-Server=localhost;Port=3306;Database=EventoClientes;Uid=root;Pwd=mysql;

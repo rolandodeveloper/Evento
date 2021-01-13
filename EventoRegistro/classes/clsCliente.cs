@@ -38,17 +38,20 @@ namespace EventoRegistro
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException(null,"El nombre del cliente no puede quedar vacío.");
+                    throw new ArgumentNullException
+                        (null,"El nombre del cliente no puede quedar vacío.");
                 }
                 else if (value.Trim().Length<3)
                 {
-                    throw new ArgumentOutOfRangeException(null,"El nombre del cliente debe tener al menos 3 caracteres.");
+                    throw new ArgumentOutOfRangeException
+                        (null,"El nombre del cliente debe tener al menos 3 caracteres.");
                 }
                 else if (value.Trim().Length>50)
                 {
-                    throw new ArgumentOutOfRangeException(null,"El nombre del cliente debe tener 50 caracteres como máximo.");
+                    throw new ArgumentOutOfRangeException
+                        (null,"El nombre del cliente debe tener 50 caracteres como máximo.");
                 }
-                _nombres =  CultureInfo.InvariantCulture.TextInfo.ToTitleCase(value);
+                _nombres =  value.Trim().ToUpper();
             }
         }
 
@@ -71,7 +74,7 @@ namespace EventoRegistro
                 {
                     throw new ArgumentOutOfRangeException(null, "El apellido paterno debe tener 40 caracteres como máximo.");
                 }                
-                _apellidoPaterno = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(value);
+                _apellidoPaterno = value.Trim().ToUpper();
             }
         }
 
@@ -94,7 +97,7 @@ namespace EventoRegistro
                 {
                     throw new ArgumentOutOfRangeException(null, "El apellido materno debe tener 40 caracteres como máximo.");
                 }
-                _apellidoMaterno = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(value);
+                _apellidoMaterno = value.Trim().ToUpper();
             }
         }
 
@@ -185,11 +188,11 @@ namespace EventoRegistro
             get { return _fechaNacimiento; }
             set 
             {                
-                if (value> new DateTime(System.DateTime.Now.AddYears(-25).Year,
+                if (value< new DateTime(System.DateTime.Now.AddYears(-25).Year,
                                             System.DateTime.Now.Month,
                                             System.DateTime.Now.Day))
                 {
-                    throw new ArgumentOutOfRangeException(null, "La fecha de nacimiento es inválida. \n" + "Solo admiten clientes con 25 años cumplidos al 30 de septiembre.");
+                    throw new ArgumentOutOfRangeException(null, "La fecha de nacimiento es inválida. \n" + "Solo admiten clientes con mínimo 25 años cumplidos a la fecha.");
                 }                
                 _fechaNacimiento = value; 
             }
@@ -228,7 +231,7 @@ namespace EventoRegistro
 
         public void Insertar()
         {            
-            MySqlConnection cn = new MySqlConnection("Server=tuServidor;Port=1234;Database=EventoClientes;Uid=root;Pwd=passw;");
+            MySqlConnection cn = new MySqlConnection(modules.mdlVariablesGlobales.canenaConexion);
             MySqlCommand cmd = new MySqlCommand("usp_Cliente_Insertar", cn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("parNombres",nombres);
