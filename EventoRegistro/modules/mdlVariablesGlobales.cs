@@ -8,6 +8,6 @@ namespace EventoRegistro.modules
 {
     public class mdlVariablesGlobales
     {
-        public static string canenaConexion = "Server=elNombreDeServidor;Port=numeroDePuerto;Database=EventoClientes;Uid=elNombreDeUsuario;Pwd=laClaveDeUsuario;";
+        public static string canenaConexion = "Server=servidor;Port=puerto;Database=eventoClientes;Uid=usuario;Pwd=claveDeUsuario;";
     }
 }

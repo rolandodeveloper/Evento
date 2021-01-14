@@ -188,7 +188,7 @@ namespace EventoRegistro
             get { return _fechaNacimiento; }
             set 
             {                
-                if (value< new DateTime(System.DateTime.Now.AddYears(-25).Year,
+                if (value> new DateTime(System.DateTime.Now.AddYears(-25).Year,
                                             System.DateTime.Now.Month,
                                             System.DateTime.Now.Day))
                 {
